@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Agregador web</title>
+
+    <!--Estilos-->
+    <link rel="icon" type="image/png" href="img/icons/grid.png" />
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="css/estilos.css">
+    <link rel="stylesheet" type="text/css" href="css/productos.css">
+    <!--JavaScript-->
+    <script src="js/jquery.min.js"></script>
+    <script src="js/popper.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+
+
+</head>
+
+<body>
+    <div class="container-fluid header">
+
+        <div class="row">
+            <!-- Logo -->
+            <div class="col-8">
+                <div class="logo_container">
+                    <div class="logo"><a href="index.html">DM2E</a><br />Agregador web de productos</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <!--categorias-->
+            <div class="col-2">
+                <br /><br />
+                <div class="main_nav_content d-flex flex-row">
+
+                    <!-- Categories Menu -->
+                    <div class="cat_menu_container cat">
+                        <div class="cat_menu_title d-flex flex-row align-items-center justify-content-start">
+                            <div class="cat_burger"><span></span><span></span><span></span></div>
+                            <div class="cat_menu_text">Categorias</div>
+                        </div>
+
+                        <ul class="cat_menu">
+                            <li class="hassubs">
+                                <a class="js-product-request" level="1" href="products.html">Ordenadores<i class="fas fa-chevron-right ml-auto"></i></a>
+                                <ul>
+                                    <li><a class="js-product-request" level="2" href="products.html">Sobremesas<i class="fas fa-chevron-right"></i></a></li>
+                                    <li><a class="js-product-request" level="2" href="products.html">Portatiles<i class="fas fa-chevron-right"></i></a></li>
+                                </ul>
+                            </li>
+                            <li class="hassubs">
+                                <a class="js-product-request" level="1" href="products.html">Monitores<i class="fas fa-chevron-right"></i></a>
+                                <ul>
+                                    <li><a class="js-product-request" level="2" href="products.html">IPS<i class="fas fa-chevron-right"></i></a></li>
+                                    <li><a class="js-product-request" level="2" href="products.html">Ultrawide<i class="fas fa-chevron-right"></i></a></li>
+                                </ul>
+                            </li>
+                            <li><a class="js-product-request" level="1" href="products.html">Camaras<i class="fas fa-chevron-right"></i></a></li>
+                            <li class="hassubs">
+                                <a class="js-product-request" level="1" href="products.html">Smartphones<i class="fas fa-chevron-right"></i></a>
+                                <ul>
+                                    <li><a class="js-product-request" level="2" href="products.html">Apple<i class="fas fa-chevron-right"></i></a></li>
+                                    <li><a class="js-product-request" level="2" href="products.html">Samsung<i class="fas fa-chevron-right"></i></a></li>
+                                </ul>
+                            </li>
+                            <li><a class="js-product-request" level="1" href="products.html">Consolas<i class="fas fa-chevron-right"></i></a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <!-- Buscador -->
+            <div class="col-10 col-sm-10 col-md-8 col-lg-8">
+
+                <div class="header_search">
+                    <div class="header_search_content">
+                        <div class="header_search_form_container">
+
+                            <form action="products.html" method="GET" class="header_search_form clearfix">
+                                <input type="hidden" name="level" value="3">
+                                <input type="search" name="categoria" onkeyup="showHint(this.value)" required="required"
+                                    class="header_search_input" placeholder="Buscar...">
+                                <button type="submit" class="header_search_button trans_300" value="Submit"><img src="img/search.png"
+                                        alt="Imagen no encontrada"></button>
+                            </form>
+                            <div class="hint"><span id="txtHint"></span></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="registro" class="row registro" data-toggle="modal" data-target="#Modal" title="Regístrate!"></div>
+    </div>
+
+    <!-- Main -->
+    <main id="main">
+        <!-- Product buttons -->
+        <div class="listado col-10">PRODUCTOS
+            <hr />
+        </div>
+        <div class="js-product-list">
+
+            <div class="row">
+                <div id="btn-grid" class="botones boton1" data-toggle="tooltip" title="Vista grilla"></div>
+                <div id="btn-list" class="botones boton2" data-toggle="tooltip" title="Vista listado"></div>
+                <div id="btn-map" class="botones boton3" data-toggle="tooltip" title="vista mapa"></div>
+            </div>
+            <!-- =============================== productos ======================================== -->
+
+
+            <!-- vista grid -->
+            <div id="view-grid" class="row">
+            </div>
+            <!-- vista lista -->
+            <div id="view-list" class="row">
+            </div>
+
+            <!-- vista mapa -->
+            <div id="view-map" class="row">
+                <div id="product-map" class="col-xs-12 col-sm-12 col-md-12 col-lg-12"></div>
+            </div>
+        </div>
+
+    </main>
+    <!-- /Main -->
+
+    <script>
+
+        $(document).ready(function () {
+            $("#view-list").hide();
+            $("#view-map").hide();
+            $("#view-grid").show();
+        });
+
+        $('#btn-grid').on('click', function () {
+            $("#view-list").hide();
+            $("#view-map").hide();
+            $("#view-grid").show();
+        });
+
+        $('#btn-list').on('click', function () {
+            $("#view-list").show();
+            $("#view-map").hide();
+            $("#view-grid").hide();
+        });
+
+        $('#btn-map').on('click', function () {
+            $("#view-list").hide();
+            $("#view-map").show();
+            $("#view-grid").hide();
+        });
+
+
+    </script>
+
+    <!-- Footer -->
+    <footer id="footer" class="pb-4 pt-4">
+            <div class="container">
+                <div class="row text-center">
+                    <div class="col-12 col-lg">
+                        <div style="color:white;" class="pie">Autor: Alejandro Taghavi Espinosa</div>
+                    </div>
+                    <div class="col-12 col-lg">
+                        <div style="color:white;" class="pie">Nº expediente/grupo: 12251 - DM2E</div>
+                    </div>
+                    <div class="col-12 col-lg">
+                        <a href="../Documentacion/12251_documentacionProyecto.pdf">Documentación del proyecto</a>
+                    </div>
+                    <div class="col-12 col-lg">
+                        <a href="../Documentacion/DM2E_WAVE_Report.pdf">Validación WAI</a>
+                    </div>
+                </div>
+            </div>
+        </footer>
+        <!-- /Footer -->
+
+    <!-- Modal -->
+    <div class="modal fade" id="Modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Nuevo Usuario</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form>
+                        <div class="form-group">
+                            <label for="name" class="col-form-label">Nombre:</label>
+                            <input type="text" name="nombre" class="form-control" id="name">
+                        </div>
+                        <div class="form-group">
+                            <label for="correo" class="col-form-label">Correo:</label>
+                            <input type="text" name="mail" class="form-control" id="correo">
+                        </div>
+                        <div class="form-group">
+                            <label for="telefono" class="col-form-label">Teléfono:</label>
+                            <input type="text" name="tel" class="form-control" id="telefono">
+                        </div>
+                        <div class="form-group">
+                            <label for="mensaje" class="col-form-label">Mensaje:</label>
+                            <textarea class="form-control" name="mensaje" id="mensaje"></textarea>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                    <button type="button" class="btn btn-primary" onclick="envio()">Enviar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- /Modal -->
+    <script src="js/funciones.js"></script>
+    <script src="js/productos.js"></script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC0NzEMklNLnLVpD5uQWlCz-csMtcVgKsY&callback=initMapProduct"
+        asynchronous defer></script>
+
+</body>
+
+</html>

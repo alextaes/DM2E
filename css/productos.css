@@ -1,0 +1,57 @@
+.botones {
+    width: 32px; 
+    height: 32px; 
+    border-radius: 5px;
+    margin-top: 40px;
+    margin-bottom: 30px;
+} 
+.boton1 {
+    background-image:  url('img/icons/grilla.png'); 
+    margin-left: 60px;
+}
+.boton2 {
+    background-image:  url('img/icons/list.png'); 
+}
+.boton3 {
+    background-image:  url('img/icons/map.png');
+}
+.botones:hover {
+    cursor: pointer;
+} 
+
+.caja {
+    margin: 30px;
+    height: 380px;
+    width: 230px;
+    border-radius: 10px;
+    border: 1px solid black;
+    background: #F0F0F0;
+}
+
+.img_caja {
+    background: white;
+    border-radius: 10px;
+    height: 200px;
+    width: 228px;
+}
+
+
+.lista {
+    width: 90%;
+    height: 50px;
+    border-radius: 10px;
+    background: #F0F0F0;
+    margin: 10px;
+    padding: 5PX;
+}
+
+
+#view-map {
+    margin: 50px;
+}
+
+#product-map {
+    min-height: 650px;
+    margin: auto;
+
+}
